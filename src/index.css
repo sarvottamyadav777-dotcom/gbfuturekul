@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 213 31% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 213 31% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 31% 7%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 213 31% 7%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 213 31% 7%;
+    --foreground: 210 40% 98%;
+    --card: 213 31% 7%;
+    --card-foreground: 210 40% 98%;
+    --popover: 213 31% 7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 210 13% 27%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 210 13% 27%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 210 13% 27%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 13% 27%;
+    --input: 210 13% 27%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+.divshadow {
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+.dark .divshadow {
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* Shimmer Skeleton */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: hsl(var(--muted));
+}
+
+.skeleton-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--foreground) / 0.08),
+    transparent
+  );
+  animation: skeleton-shimmer 1.35s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Player menu entrance animation */
+.nt-player-menu {
+  animation: nt-player-menu-in 180ms ease-out both;
+  transform-origin: right bottom;
+}
+
+@keyframes nt-player-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Player progress range bar */
+.nt-player-progress {
+  --played: 0%;
+  --buffered: 0%;
+  background: linear-gradient(
+    to right,
+    #fff 0,
+    #fff var(--played),
+    #777 var(--played),
+    #777 var(--buffered),
+    #4c4c4c var(--buffered),
+    #4c4c4c 100%
+  );
+}
+
+.nt-player-progress::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.nt-player-progress::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #fff;
+  border: 0;
+}
+
+@media (max-width: 640px) {
+  .nt-player-progress::-webkit-slider-thumb {
+    width: 11px;
+    height: 11px;
+  }
+  .nt-player-progress::-moz-range-thumb {
+    width: 11px;
+    height: 11px;
+  }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Hide scrollbar where needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

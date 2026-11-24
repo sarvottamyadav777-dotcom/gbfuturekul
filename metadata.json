@@ -1,0 +1,8 @@
+{
+  "name": "GB STUDY",
+  "description": "GB STUDY - India's premium free educational platform for Railway, SSC, State Exams, Science & General Studies with live/recorded video lectures and PDF notes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
